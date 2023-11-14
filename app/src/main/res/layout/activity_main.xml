@@ -6,48 +6,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    android:background="#FFC107"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/txt_title"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Title"/>
+        android:layout_height="500dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:background="#51CDC2"
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/btnnn"
+            app:layout_constraintBottom_toTopOf="@id/btn_update"/>
+    </ScrollView>
 
-    <EditText
-        android:id="@+id/txt_desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Description"/>
-
-    <EditText
-        android:id="@+id/txt_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Tanggal"/>
 
     <Button
         android:id="@+id/btnnn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tambah Data"/>
-
-    <Button
-        android:id="@+id/btn_update"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update Data"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/btnnn"
-        app:layout_constraintBottom_toTopOf="@id/btn_update"/>
-
-
 
 </LinearLayout>
