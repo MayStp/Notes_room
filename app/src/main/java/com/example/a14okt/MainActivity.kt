@@ -56,32 +56,36 @@ class MainActivity : AppCompatActivity() {
                 updateId = 0
                 setEmptyField()
             }
-            listView.setOnItemClickListener{
-                adapterView, _, i, _ ->
-                val item = adapterView.getItemAtPosition(i) as Notes
-                updateId = item.id
-                txtTitle.setText(item.title)
-                txtDesc.setText(item.description)
-                txtDate.setText(item.date)
-            }
-            listView.onItemLongClickListener =
-                AdapterView.OnItemLongClickListener { adapterView, _, i, _ ->
-                    val item = adapterView.getItemAtPosition(i) as Notes
-                    delete(item)
-                    true
-                }
         }
     }
 
-    private fun getAll(){
-        println("run getAll")
-        mNotesDao.getAllNotes.observe(this) { notes ->
-            val adapter: ArrayAdapter<Notes> = ArrayAdapter<Notes>(
-                this@MainActivity, android.R.layout.simple_list_item_1, notes)
-            println("notes: $notes")
-            binding.listView.adapter = adapter
+//    private fun getAll(){
+//        println("run getAll")
+//        mNotesDao.getAllNotes.observe(this) { notes ->
+//            val adapter: ArrayAdapter<Notes> = ArrayAdapter<Notes>(
+//                this@MainActivity, android.R.layout.simple_list_item_1, notes)
+//            println("notes: $notes")
+//            binding.listView.adapter = adapter
+//        }
+//    }
+        private fun getAll() {
+            mNotesDao.getAllNotes.observe(this) { notes ->
+                val adapter = NotesAdapter(notes,
+                    onItemClick = { item ->
+                        updateId = item.id
+                        binding.txtTitle.setText(item.title)
+                        binding.txtDesc.setText(item.description)
+                        binding.txtDate.setText(item.date)
+                    },
+                    onItemLongClick = { item ->
+                        delete(item)
+                    }
+                )
+                binding.recyclerView.adapter = adapter
+            }
         }
-    }
+
+
 
     private fun insert(notes: Notes){
         executorService.execute { mNotesDao.insertNotes(notes) }
@@ -107,4 +111,6 @@ class MainActivity : AppCompatActivity() {
            txtDesc.setText("")
        }
     }
+
+
 }
