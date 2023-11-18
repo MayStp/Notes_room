@@ -24,6 +24,11 @@ class MainActivity : AppCompatActivity() {
     private var updateId: Int = 0
     private val REQUEST_CODE_SECOND_ACTIVITY = 1
 
+    companion object {
+        const val REQUEST_CODE_UPDATE_ACTIVITY = 2
+    }
+
+
     private val listNotes = mutableListOf<Notes>() // Tambahkan list untuk menyimpan data yang akan ditampilkan
     private lateinit var notesAdapter: NotesAdapter // Deklarasikan adapter di sini
 
@@ -37,13 +42,23 @@ class MainActivity : AppCompatActivity() {
 
         notesAdapter = NotesAdapter(listNotes,
             onItemClick = { item ->
-                // Hanya perbarui variabel 'updateId', tanpa mengubah input form
-                updateId = item.id
+                executorService.execute {
+                    // Inside onItemClick in your notesAdapter
+                    val position = listNotes.indexOf(item)
+                    val selectedNote = listNotes[position] // Assuming position is the clicked item position
+                    val intent = Intent(this@MainActivity, Second::class.java)
+                    intent.putExtra("SELECTED_NOTE", selectedNote)
+                    startActivityForResult(intent, REQUEST_CODE_UPDATE_ACTIVITY)
+
+
+
+                }
             },
             onItemLongClick = { item ->
                 delete(item)
             }
         )
+
         binding.recyclerView.adapter = notesAdapter // Set adapter ke RecyclerView di sini
 
         binding.btnnn.setOnClickListener {

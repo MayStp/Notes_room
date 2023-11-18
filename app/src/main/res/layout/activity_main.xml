@@ -6,24 +6,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:background="#FFC107"
+    android:background="#2B2B2B"
     tools:context=".MainActivity">
+
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="500dp">
-        <androidx.recyclerview.widget.RecyclerView
-            android:background="#51CDC2"
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/btnnn"
-            app:layout_constraintBottom_toTopOf="@id/btn_update"/>
-    </ScrollView>
+        android:layout_height="500dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/shapes2">
 
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:background="@drawable/shapes"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/btn_update"
+                app:layout_constraintTop_toBottomOf="@id/btnnn" />
+
+
+    </ScrollView>
 
     <Button
         android:id="@+id/btnnn"

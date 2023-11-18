@@ -19,7 +19,11 @@ interface NotesDao {
     @Delete
     fun deleteNotes(notes: Notes)
 
-    @get:Query("SELECT * FROM notes_table ORDER BY id DESC")
+    @Query("SELECT * FROM catatans_table WHERE id = :noteId")
+    fun getNoteById(noteId: Int): LiveData<Notes>
+
+
+    @get:Query("SELECT * FROM catatans_table ORDER BY id ASC")
     val getAllNotes: LiveData<List<Notes>>
 
 }

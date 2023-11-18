@@ -18,7 +18,7 @@ abstract class NotesRoomDatabase : RoomDatabase(){
                 synchronized(NotesRoomDatabase::class.java){
                         INSTANCE = databaseBuilder(
                             context.applicationContext,
-                            NotesRoomDatabase::class.java, "notes_database"
+                            NotesRoomDatabase::class.java, "catatans_table"
                         )
                             .build()
                 }
