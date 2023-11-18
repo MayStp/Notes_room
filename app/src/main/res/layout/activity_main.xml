@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:background="#2B2B2B"
+    android:background="#DFDFDF"
     tools:context=".MainActivity">
 
 
@@ -30,10 +30,14 @@
 
     </ScrollView>
 
-    <Button
+    <ImageButton
         android:id="@+id/btnnn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tambah Data"/>
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="25dp"
+        android:fontFamily="@font/poppins"
+        android:background="@drawable/shape3"
+        android:src="@drawable/add"
+        android:layout_gravity="end"/>
 
 </LinearLayout>
